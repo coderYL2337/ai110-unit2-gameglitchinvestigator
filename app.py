@@ -78,7 +78,7 @@ with col1:
 with col2:
     st.button("New Game 🔁", on_click=reset_game)
 with col3:
-    show_hint = st.checkbox("Show hint", value=st.session_state.show_hint, key="show_hint")
+    st.checkbox("Show hint", key="show_hint")
 
 if st.session_state.status != "playing":
     if st.session_state.status == "won":
@@ -100,7 +100,7 @@ if submit:
 
         outcome, message = check_guess(guess_int, st.session_state.secret)
 
-        if show_hint:
+        if st.session_state.show_hint:
             st.warning(message)
 
         st.session_state.score = update_score(
