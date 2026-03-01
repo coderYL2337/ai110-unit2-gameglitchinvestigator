@@ -25,13 +25,21 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x ] Describe the game's purpose.
+After user submit a guess, debugged game should give user hint whether to go higher or lower. If user can guess the right number within 8 tries, user wins. Otherwise, user loses. 
+- [x ] Detail which bugs you found.
+   --when guess is greater than secret, hint says 'Go Higher';when guess is smaller than secret, hint says 'go lower'. Hint should say "Go higher" when guess is smaller than secret, and say "Go lower" when guess is bigger than secret.
+   --“New Game” only reset attempts and secret, leaving score, history, and the hint checkbox state in st.session_state, so the debug panel and hint behavior carried over.
+   --History in developer debugger lags one element behind submission. For example, after first submission, history still shows [], after second submission, history shows[0:value]. At the end of the game or when user stops playing, history does not record the last submission. History should record each submission and all submission.
+- [x ] Explain what fixes you applied.
+--Fixed the hint direction in check_guess() so high guesses prompt “Go Lower” and low guesses prompt “Go Higher.”
+--Updated the new-game reset to clear score/history, restore playing status, and re-enable hints.
+--Moved the “Developer Debug Info” expander to render after the submission logic, so it reflects the latest history and no longer lags a step behind. The lag was due to the debug block being rendered before the submit handling ran in the same Streamlit rerun.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [ x] [Insert a screenshot of your fixed, winning game here]
+![fixed,winning game](image-1.png)
 
 ## 🚀 Stretch Features
 
